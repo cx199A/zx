@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>镇雄干竹笋 · AI品牌推广</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background-color: #f5f0e8;
+            color: #2d3e2b;
+            line-height: 1.7;
+            padding: 0 0 40px 0;
+            scroll-behavior: smooth;
+        }
+        .container { max-width: 800px; margin: 0 auto; padding: 0 20px; }
+        @media (min-width: 900px) {
+            .container { max-width: 1100px; padding: 0 40px; }
+            .section { padding: 40px 44px; }
+            .section h2 { font-size: 1.7em; }
+            .section h3 { font-size: 1.25em; }
+            .section p, .section li { font-size: 1.05em; }
+            .stats-row { gap: 24px; }
+            .stat-card .number { font-size: 2.2em; }
+            .stat-card .label { font-size: 0.9em; }
+            .hero h1 { font-size: 3em; }
+            .hero .subtitle { font-size: 1.3em; }
+            .hero .author { font-size: 1em; }
+            .source-table { font-size: 0.92em; }
+        }
+        @media (min-width: 1100px) {
+            .two-column {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 28px;
+                align-items: start;
+            }
+            .two-column .chart-img { margin-top: 0; }
+            .two-column .chart-caption { margin-bottom: 0; }
+        }
+        .hero {
+            background: linear-gradient(145deg, #2d5a27 0%, #3b6e33 100%);
+            color: #fff;
+            padding: 80px 20px 70px;
+            text-align: center;
+            border-radius: 0 0 40px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: "🎋";
+            position: absolute;
+            font-size: 180px;
+            opacity: 0.08;
+            bottom: -30px;
+            right: -20px;
+            transform: rotate(15deg);
+        }
+        .hero h1 {
+            font-size: 2.2em;
+            letter-spacing: 2px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 1;
+        }
+        .hero .subtitle {
+            font-size: 1.05em;
+            opacity: 0.9;
+            font-weight: 300;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 1;
+        }
+        .hero .author {
+            margin-top: 28px;
+            font-size: 0.9em;
+            opacity: 0.7;
+            position: relative;
+            z-index: 1;
+        }
+        .section {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 32px 28px;
+            margin-top: 32px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            transition: transform 0.2s;
+        }
+        .section:hover { transform: translateY(-2px); }
+        .section h2 {
+            font-size: 1.45em;
+            color: #2d5a27;
+            border-left: 6px solid #7cb342;
+            padding-left: 16px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        .section h3 {
+            font-size: 1.1em;
+            color: #3b6e33;
+            margin: 20px 0 10px;
+            font-weight: 600;
+        }
+        .section p { margin-bottom: 14px; color: #3a4a38; font-size: 0.98em; }
+        .section ul, .section ol { padding-left: 24px; margin-bottom: 14px; color: #3a4a38; font-size: 0.98em; }
+        .section li { margin-bottom: 6px; }
+        .stat-highlight {
+            display: inline-block;
+            background: #e8f5e9;
+            color: #2d5a27;
+            font-weight: 600;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 0.95em;
+        }
+        .stats-row { display: flex; flex-wrap: wrap; gap: 16px; margin: 20px 0 10px; }
+        .stat-card {
+            flex: 1 1 140px;
+            background: #f8fbf7;
+            border-radius: 16px;
+            padding: 16px 12px;
+            text-align: center;
+            border: 1px solid #dde8d8;
+        }
+        .stat-card .number { font-size: 1.8em; font-weight: 700; color: #2d5a27; line-height: 1.2; }
+        .stat-card .label { font-size: 0.8em; color: #6b7d67; margin-top: 4px; }
+        .chart-img { width: 100%; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); margin: 20px 0 8px; display: block; }
+        .chart-caption { text-align: center; font-size: 0.82em; color: #8a9a86; margin-bottom: 16px; line-height: 1.6; }
+        .video-wrapper {
+            background: #1a2a18;
+            border-radius: 16px;
+            overflow: hidden;
+            margin: 18px 0;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 200px;
+        }
+        .video-wrapper video {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            max-height: 70vh;
+            display: block;
+            background: #1a2a18;
+            object-fit: contain;
+        }
+        .video-caption { text-align: center; font-size: 0.85em; color: #8a9a86; margin-top: 8px; margin-bottom: 12px; }
+        .file-link-box {
+            background: #fafcf9;
+            border: 1px solid #d0dfcb;
+            border-radius: 12px;
+            padding: 14px 18px;
+            margin: 16px 0 4px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            font-size: 0.88em;
+            color: #4a5e46;
+            transition: background 0.15s;
+        }
+        .file-link-box:hover { background: #f1f7ee; }
+        .file-link-box .icon { font-size: 1.3em; }
+        .file-link-box a { color: #2d5a27; text-decoration: none; font-weight: 500; word-break: break-all; }
+        .file-link-box a:hover { text-decoration: underline; }
+        .interactive-btn {
+            display: inline-block;
+            background: #2d5a27;
+            color: #fff;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-size: 0.95em;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            margin: 8px 0 6px;
+        }
+        .interactive-btn:hover { background: #3b6e33; transform: scale(1.02); box-shadow: 0 6px 14px rgba(45,90,39,0.25); }
+        .interactive-btn:active { transform: scale(0.98); }
+        .feedback-area {
+            margin-top: 14px;
+            padding: 16px 20px;
+            background: #f4faf0;
+            border-radius: 14px;
+            border-left: 4px solid #7cb342;
+            color: #3a5e36;
+            font-size: 0.95em;
+            display: none;
+            animation: fadeIn 0.35s ease;
+        }
+        .feedback-area.show { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
+        .source-table { width: 100%; border-collapse: collapse; font-size: 0.85em; margin: 14px 0; }
+        .source-table th { background: #e8f0e4; color: #2d5a27; padding: 10px 8px; text-align: left; font-weight: 600; border-radius: 8px 8px 0 0; }
+        .source-table td { padding: 8px; border-bottom: 1px solid #e4ede0; color: #4a5e46; }
+        .source-table a { color: #2d5a27; text-decoration: none; }
+        .source-table a:hover { text-decoration: underline; }
+        .footer { text-align: center; padding: 28px 20px 10px; font-size: 0.82em; color: #9aaa95; }
+        .footer a { color: #6b8b65; text-decoration: none; }
+        @media (max-width: 500px) {
+            .hero h1 { font-size: 1.6em; }
+            .section { padding: 22px 18px; }
+            .stats-row { gap: 10px; }
+            .stat-card .number { font-size: 1.4em; }
+            .interactive-btn { width: 100%; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <h1>镇雄干竹笋</h1>
+        <div class="subtitle">AI品牌推广 · 让深山好物被看见</div>
+        <div class="author">张宣 · 艺术与设计学院 环境设计（中外）</div>
+        <img src="assets/cover.jpg" alt="镇雄干竹笋封面" style="width:100%; max-width:700px; border-radius:16px; margin-top:24px; box-shadow:0 6px 20px rgba(0,0,0,0.25); position:relative; z-index:1;">
+    </header>
+
+    <div class="container">
+
+        <section class="section" id="problem">
+            <h2>🌱 藏在深山的好笋</h2>
+            <p>镇雄县将竹产业作为<strong>“一县一业”</strong>主导产业，全县竹林面积达 <span class="stat-highlight">104.5万亩</span>，投产面积 <span class="stat-highlight">45万亩</span>。2025年竹笋加工产值突破 <span class="stat-highlight">17亿元</span>，覆盖 <span class="stat-highlight">16.04万户</span>、<span class="stat-highlight">62.04万人</span>增收。</p>
+            <p>核心产品<strong>方竹笋</strong>已通过<strong>欧盟有机认证</strong>。但长期面临<strong>“大产业、小品牌”</strong>的困境——产品多以原料外销，品牌知名度低，消费者“不知道、记不住、搜不到”。</p>
+
+            <div class="two-column">
+                <div>
+                    <img src="assets/图1_产业与品牌反差.png" alt="镇雄竹产业规模与品牌认知反差" class="chart-img">
+                    <div class="chart-caption">
+                        图1：镇雄竹产业规模与品牌认知反差<br>
+                        数据来源：澎湃新闻（2026.08.19）、百度指数
+                    </div>
+                </div>
+                <div>
+                    <img src="assets/图2_品牌价值增长.png" alt="赤水源品品牌价值增长趋势" class="chart-img">
+                    <div class="chart-caption">
+                        图2：赤水源品品牌价值增长趋势（2022-2025）<br>
+                        数据来源：云南网（2026.08.14）
+                    </div>
+                </div>
+            </div>
+
+            <div class="file-link-box">
+                <span class="icon">📎</span>
+                <span>相关文件：</span>
+                <a href="assets/项目选题信息采集表.docx" target="_blank">项目选题信息采集表.docx</a>
+                <span style="color:#c0cfbb;">|</span>
+                <a href="assets/问题证据截图.png" target="_blank">问题证据截图.png</a>
+            </div>
+        </section>
+
+        <section class="section" id="evidence">
+            <h2>📋 核心证据</h2>
+            <p>以下数据均来自政府官网、权威媒体，可追溯、可核验：</p>
+
+            <div class="stats-row">
+                <div class="stat-card">
+                    <div class="number">104.5万</div>
+                    <div class="label">亩竹林面积</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">17亿</div>
+                    <div class="label">2025综合产值</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">45万</div>
+                    <div class="label">亩投产面积</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">62万</div>
+                    <div class="label">人受益群众</div>
+                </div>
+            </div>
+
+            <h3>官方承认的短板</h3>
+            <ul>
+                <li><strong>“大产业、小品牌”</strong> —— 云南日报（2026.08.13）</li>
+                <li><strong>“藏在深山、声量有限”</strong> —— 农民日报（2026.09.07）</li>
+                <li><strong>“农产品多以原料外销，附加值低”</strong> —— 中国日报网（2026.08.14）</li>
+                <li><strong>“缺乏品牌引领、标准支撑”</strong> —— 镇雄新闻网（2026.01.22）</li>
+            </ul>
+
+            <div class="file-link-box">
+                <span class="icon">📎</span>
+                <span>证据台账：</span>
+                <a href="assets/事实数据来源台账.xlsx" target="_blank">事实数据来源台账.xlsx</a>
+                <span style="color:#c0cfbb;">|</span>
+                <a href="assets/官方报道截图.png" target="_blank">官方报道截图.png</a>
+            </div>
+        </section>
+
+        <section class="section" id="solution">
+            <h2>🤖 AI解决方案</h2>
+            <p>针对镇雄干竹笋<strong>“产业大、品牌小、藏在深山声量有限”</strong>的核心痛点，本方案构建<strong>“AI内容生成 + AI精准投放 + AI电商运营”</strong>三位一体的品牌推广系统。</p>
+
+            <h3>3.1 AI内容生成系统 —— 解决“没内容可发”</h3>
+            <ul>
+                <li><strong>产品文案生成</strong>：AI自动生成电商详情页文案、短视频脚本、社交媒体推文等。</li>
+                <li><strong>视觉素材生成</strong>：AI绘图工具生成产品图、场景图、产地风光图。</li>
+                <li><strong>智能卖点提炼</strong>：基于官方检测报告，AI自动提炼标准化卖点标签。</li>
+            </ul>
+
+            <h3>3.2 AI精准投放系统 —— 解决“发了没人看”</h3>
+            <ul>
+                <li><strong>用户画像分析</strong>：识别对“健康食品”“云南特产”感兴趣的目标人群。</li>
+                <li><strong>智能投放策略</strong>：根据人群活跃时段自动制定投放计划。</li>
+                <li><strong>效果追踪与优化</strong>：实时监测点击率、转化率，自动调整策略。</li>
+            </ul>
+
+            <h3>3.3 AI电商运营系统 —— 解决“有人看没人买”</h3>
+            <ul>
+                <li><strong>AI数字人直播</strong>：24小时不间断直播带货，实时回应观众提问。</li>
+                <li><strong>智能客服系统</strong>：AI自动回复常见问题，降低人力成本。</li>
+                <li><strong>情感分析与反馈闭环</strong>：抓取评论做情感分析，输出产品改进建议。</li>
+            </ul>
+            <p><strong>本地实践依据</strong>：2026年镇雄一场直播活动实现线上销售额68.2万元，省外订单占比89%。</p>
+
+            <div class="file-link-box">
+                <span class="icon">📎</span>
+                <span>方案文档：</span>
+                <a href="assets/DeepSeek最终方案.docx" target="_blank">DeepSeek最终方案.docx</a>
+                <span style="color:#c0cfbb;">|</span>
+                <a href="assets/技术实现路径图.png" target="_blank">技术实现路径图.png</a>
+            </div>
+        </section>
+
+        <section class="section" id="multi-ai">
+            <h2>🔄 多AI交叉合作制定解决方案</h2>
+            <p>本项目采用<strong>“多AI独立设计 + 交叉检查 + 人工复核”</strong>的方式，使用3种国产AI工具分别生成方案，再互相检查、指出问题，最后由本人复核归纳。</p>
+
+            <h3>第一步：3种AI工具独立设计</h3>
+            <table class="source-table">
+                <thead>
+                    <tr>
+                        <th>AI工具</th>
+                        <th>厂商</th>
+                        <th>方案核心思路</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>DeepSeek</strong></td>
+                        <td>深度求索</td>
+                        <td>“AI内容生成 + AI精准投放 + AI电商运营”三位一体系统</td>
+                    </tr>
+                    <tr>
+                        <td><strong>豆包</strong></td>
+                        <td>字节跳动</td>
+                        <td>“品质信任底座 + 内容规模化传播 + 市场智能研判 + AI数字IP + 产业主体赋能”五大模块</td>
+                    </tr>
+                    <tr>
+                        <td><strong>千问</strong></td>
+                        <td>阿里巴巴</td>
+                        <td>“视觉重塑 + 内容裂变 + 精准触达”三个维度</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>第二步：3种AI互相检查</h3>
+            <table class="source-table">
+                <thead>
+                    <tr>
+                        <th>方案</th>
+                        <th>问题类型</th>
+                        <th>处理方式</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>DeepSeek</td>
+                        <td>虚构数据</td>
+                        <td>删除无来源的“月销售额8万→21万”，替换为镇雄直播数据68.2万元</td>
+                    </tr>
+                    <tr>
+                        <td>DeepSeek</td>
+                        <td>指标嫁接</td>
+                        <td>修正“普宁美梅AI问答系统”好评率归属</td>
+                    </tr>
+                    <tr>
+                        <td>DeepSeek</td>
+                        <td>数据口径过时</td>
+                        <td>投产面积42万亩更新为45万亩</td>
+                    </tr>
+                    <tr>
+                        <td>豆包</td>
+                        <td>数据存疑</td>
+                        <td>删除“氨基酸高20%”等无法核验的量化表述</td>
+                    </tr>
+                    <tr>
+                        <td>千问</td>
+                        <td>表述不严谨</td>
+                        <td>修正欧盟有机认证的表述范围</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>第三步：人工复核与归纳</h3>
+            <ul>
+                <li><strong>采用</strong>：三家方案的核心创意融合为最终方案。</li>
+                <li><strong>修改</strong>：删除所有无法追溯的虚构数据，修正错误引用。</li>
+                <li><strong>标注不确定</strong>：部分技术设想标注为“规划构想”。</li>
+            </ul>
+
+            <div class="file-link-box">
+                <span class="icon">📎</span>
+                <span>交叉检查文档：</span>
+                <a href="assets/多AI方案互相检查结论.docx" target="_blank">多AI方案互相检查结论.docx</a>
+                <span style="color:#c0cfbb;">|</span>
+                <a href="assets/DeepSeek原设计方案.docx" target="_blank">DeepSeek原设计方案.docx</a>
+                <span style="color:#c0cfbb;">|</span>
+                <a href="assets/豆包原设计方案.docx" target="_blank">豆包原设计方案.docx</a>
+                <span style="color:#c0cfbb;">|</span>
+                <a href="assets/千问原设计方案.docx" target="_blank">千问原设计方案.docx</a>
+            </div>
+        </section>
+
+        <section class="section" id="video">
+            <h2>🎬 演示视频</h2>
+            <div class="video-wrapper">
+                <video controls>
+                    <source src="video.mp4" type="video/mp4">
+                    您的浏览器不支持视频播放。
+                </video>
+            </div>
+            <div class="video-caption">▲ 演示视频</div>
+        </section>
+
+        <section class="section" id="interactive">
+            <h2>✨ 交互体验</h2>
+            <p>点击下方按钮，体验“AI品质标签智能生成”功能。</p>
+
+            <button class="interactive-btn" id="generateBtn">🌿 生成品质标签</button>
+
+            <div class="feedback-area" id="feedbackArea">
+                <strong>✅ AI生成结果：</strong><br>
+                🏔️ 赤水河源产地 · 高山原生方竹 · 🌿 无硫烘干 · 🍃 欧盟有机认证 · 🏷️ 赤水源品授权
+            </div>
+
+            <div class="file-link-box">
+                <span class="icon">📎</span>
+                <span>交互素材：</span>
+                <a href="assets/品质标签库.json" target="_blank">品质标签库.json</a>
+                <span style="color:#c0cfbb;">|</span>
+                <a href="assets/交互说明.txt" target="_blank">交互说明.txt</a>
+            </div>
+        </section>
+
+        <section class="section" id="sources">
+            <h2>📚 来源说明</h2>
+            <p>本页面所有数据均来自以下公开可追溯来源：</p>
+
+            <table class="source-table">
+                <thead>
+                    <tr>
+                        <th>数据内容</th>
+                        <th>来源</th>
+                        <th>日期</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>“大产业、小品牌”困境</td>
+                        <td><a href="https://ynrb-wap.yndaily.com/news_details.html?eid=6d16396f97dc80ef&timestamp=1788495722598" target="_blank">云南日报</a></td>
+                        <td>2026.08.13</td>
+                    </tr>
+                    <tr>
+                        <td>“藏在深山、声量有限”</td>
+                        <td><a href="https://www.farmer.com.cn/2026/09/07/991027766.html" target="_blank">农民日报</a></td>
+                        <td>2026.09.07</td>
+                    </tr>
+                    <tr>
+                        <td>2025综合产值17亿元、覆盖16.04万户</td>
+                        <td><a href="https://m.thepaper.cn/newsDetail_forward_33816165" target="_blank">澎湃新闻</a></td>
+                        <td>2026.08.19</td>
+                    </tr>
+                    <tr>
+                        <td>赤水源品品牌价值130.3亿元</td>
+                        <td><a href="http://m.yunnan.cn/system/2026/08/14/034124107.shtml" target="_blank">云南网</a></td>
+                        <td>2026.08.14</td>
+                    </tr>
+                    <tr>
+                        <td>镇雄直播销售额68.2万元</td>
+                        <td><a href="https://www.ynzxnews.cn" target="_blank">镇雄新闻网</a></td>
+                        <td>2026</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="file-link-box">
+                <span class="icon">📎</span>
+                <span>来源台账：</span>
+                <a href="assets/事实数据来源台账.xlsx" target="_blank">事实数据来源台账.xlsx</a>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p>2026年秋季学期《人工智能通识集中实践》（人文社科类）期末作品</p>
+            <p>张宣 · 云南大学艺术与设计学院 · 环境设计（中外）</p>
+            <p style="margin-top:6px;">
+                📧 联系邮箱：<a href="mailto:example@ynu.edu.cn">example@ynu.edu.cn</a>
+                &nbsp;|&nbsp;
+                📱 电话：138-xxxx-xxxx
+            </p>
+            <p style="margin-top:14px; font-size:0.78em; color:#b8c9b2;">
+                ⚠️ 本页面为课程实践作品，所有AI生成内容均已人工审核。数据来源见上方“来源说明”。
+            </p>
+        </footer>
+
+    </div>
+
+    <script>
+        (function() {
+            const btn = document.getElementById('generateBtn');
+            const area = document.getElementById('feedbackArea');
+            let generated = false;
+
+            btn.addEventListener('click', function() {
+                if (!generated) {
+                    area.classList.add('show');
+                    btn.textContent = '✅ 已生成';
+                    generated = true;
+                } else {
+                    area.classList.remove('show');
+                    btn.textContent = '🌿 生成品质标签';
+                    generated = false;
+                }
+            });
+        })();
+    </script>
+
+</body>
+</html>
